@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <plurals name="process">
+        <item quantity="zero">No running processes</item>
+        <item quantity="one">%1$d running process</item>
+        <item quantity="many">%1$d running processes</item>
+        <item quantity="other">%1$d running processes</item>
+    </plurals>
+    <plurals name="activity">
+        <item quantity="zero">No recent activities</item>
+        <item quantity="one">%1$d recent activity</item>
+        <item quantity="many">%1$d recent activities</item>
+        <item quantity="other">%1$d recent activities</item>
+    </plurals>
+    
+</resources>
