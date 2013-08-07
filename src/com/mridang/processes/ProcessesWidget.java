@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.bugsense.trace.BugSenseHandler;
@@ -38,16 +39,16 @@ public class ProcessesWidget extends DashClockExtension {
 	@Override
 	protected void onUpdateData(int arg0) {
 
-		setUpdateWhenScreenOn(true);
-
 		Log.d("ProcessesWidget", "Getting the status of the processes");
 		ExtensionData edtInformation = new ExtensionData();
-		edtInformation.visible(false);
+		setUpdateWhenScreenOn(true);
 
 		try {
 
 			ActivityManager mgrActivity = (ActivityManager) this.getSystemService( ACTIVITY_SERVICE );
 
+			edtInformation.clickIntent(new Intent(Intent.ACTION_VIEW).setClassName("com.android.settings", "com.android.settings.RunningServices"));
+			
 			Log.d("ProcessesWidget", "Calculating the number of recent activities");
 			Integer intActivities =  mgrActivity.getRecentTasks(Integer.MAX_VALUE, ActivityManager.RECENT_IGNORE_UNAVAILABLE).size() - 1;
 			Log.d("ProcessesWidget", intActivities + " recent activities");
@@ -62,11 +63,12 @@ public class ProcessesWidget extends DashClockExtension {
 			Integer intApplications = mgrActivity.getRunningAppProcesses().size();
 			Log.d("ProcessesWidget", intApplications + " running applications");
 
-			edtInformation.visible(true);
 			if (intApplications > 0) 
 				edtInformation.expandedBody(getResources().getQuantityString(R.plurals.process, intApplications, intApplications));
 			else
 				edtInformation.expandedTitle(getString(R.string.no_processes));			
+
+			edtInformation.visible(true);
 
 			if (new Random().nextInt(5) == 0) {
 
@@ -96,7 +98,6 @@ public class ProcessesWidget extends DashClockExtension {
 
 					}
 
-					
 				}
 
 			} else {
@@ -104,6 +105,7 @@ public class ProcessesWidget extends DashClockExtension {
 			}
 
 		} catch (Exception e) {
+			edtInformation.visible(false);
 			Log.e("ProcessesWidget", "Encountered an error", e);
 			BugSenseHandler.sendException(e);
 		}
