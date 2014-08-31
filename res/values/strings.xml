@@ -1,9 +1,8 @@
 <resources>
 
-    <string name="no_activities">No recent activities</string>
     <string name="extension_name">Processes</string>
     <string name="application_name">Dashclock Processes Extension</string>
     <string name="extension_info">Displays information about the running activities and processes.</string>
-    <string name="no_processes">No running processes</string>
+	<string name="and">%1$s and %2$s</string>
 
 </resources>

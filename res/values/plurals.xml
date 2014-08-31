@@ -13,5 +13,11 @@
         <item quantity="many">%1$d recent activities</item>
         <item quantity="other">%1$d recent activities</item>
     </plurals>
-    
+    <plurals name="service">
+        <item quantity="zero">No background services</item>
+        <item quantity="one">%1$d background service</item>
+        <item quantity="many">%1$d background services</item>
+        <item quantity="other">%1$d background services</item>
+    </plurals>
+
 </resources>
